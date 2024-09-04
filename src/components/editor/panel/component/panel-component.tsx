@@ -4,7 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import PanelElement from "../panel-element";
+import PanelElement from "./panel-element";
 
 export default function PanelComponent() {
   return (

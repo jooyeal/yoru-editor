@@ -4,7 +4,7 @@ import { CSSProperties } from "react";
 
 const body = {
   id: nanoid(),
-  elementType: "container",
+  elementType: "body",
   style: {
     padding: "0.5rem",
     width: "100%",
@@ -16,7 +16,10 @@ export const initialContextValue = {
   viewport: "laptop",
   panel: "components",
   editorCanvasState: [body],
-} satisfies TEditorContext;
+} satisfies Pick<
+  NonNullable<TEditorContext>,
+  "viewport" | "panel" | "editorCanvasState"
+>;
 
 export const initialComponentStyle = {
   minHeight: "1.5rem",

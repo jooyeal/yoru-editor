@@ -19,6 +19,7 @@ export default function CanvasElementConverter({
 
   const convert = () => {
     switch (element.elementType) {
+      case "body":
       case "container":
         return <CanvasContainer element={element} isViewer={isViewer} />;
       case "label":
@@ -41,7 +42,11 @@ export default function CanvasElementConverter({
   const handleDrop = (e: React.DragEvent) => {
     e.stopPropagation();
     const elementType = e.dataTransfer.getData("elementType");
-    if (element.elementType === "container" && addChildElement && elementType) {
+    if (
+      (element.elementType === "container" || element.elementType === "body") &&
+      addChildElement &&
+      elementType
+    ) {
       addChildElement(element.id, elementType as TEditorElement);
     }
   };
@@ -53,8 +58,9 @@ export default function CanvasElementConverter({
       ) : (
         <div
           draggable
-          style={element.style}
           className={`relative ${
+            element.elementType === "body" ? "w-full" : "w-fit"
+          } ${
             selectedElement?.id === element.id
               ? "border border-purple-600"
               : "border border-dashed border-slate-700"
@@ -62,7 +68,7 @@ export default function CanvasElementConverter({
           onClick={handleClick}
           onDrop={handleDrop}
         >
-          {convert()}
+          <div style={element.style}>{convert()}</div>
           {selectedElement?.id === element.id ? (
             <div className="absolute w-full flex justify-between left-0 top-0 bg-opacity-100 opacity-100">
               <div className=" font-normal bg-purple-400 text-white p-1 rounded-b-md z-10 text-[8px] uppercase hover:opacity-100 m-0">

@@ -2,7 +2,7 @@ import { CSSProperties } from "react";
 
 export type TViewport = "laptop" | "tablet" | "phone";
 export type TPanel = "components" | "attributes";
-export type TEditorElement = "container" | "label" | "link" | "image";
+export type TEditorElement = "body" | "container" | "label" | "link" | "image";
 export type TElement = {
   id: string;
   parentId?: string;
