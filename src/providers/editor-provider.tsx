@@ -22,8 +22,16 @@ import React, {
   CSSProperties,
 } from "react";
 
-export const EditorContext = createContext<TEditorContext>(initialContextValue);
-export const useEditorContext = () => useContext(EditorContext);
+export const EditorContext = createContext<TEditorContext>(null);
+export const useEditorContext = () => {
+  const context = useContext(EditorContext);
+
+  if (context === null) {
+    throw new Error("context dosen't exist");
+  }
+
+  return context;
+};
 
 const editorReducer = (
   state: TEditorCanvasState,
