@@ -1,5 +1,6 @@
 import {
   initialComponentStyle,
+  initialContainerStyle,
   initialContextValue,
   initialImageStyle,
   initialLabelStyle,
@@ -79,7 +80,7 @@ const editorReducer = (
 const getInitialStyle = (elementType: TEditorElement): CSSProperties => {
   switch (elementType) {
     case "container":
-      return initialComponentStyle;
+      return initialContainerStyle;
     case "label":
       return initialLabelStyle;
     case "link":
